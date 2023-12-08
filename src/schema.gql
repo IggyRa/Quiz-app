@@ -5,9 +5,22 @@
 type Quiz {
   id: Int!
   name: String!
-  numOfQust: Int!
 }
 
 type Query {
-  quizes: [Quiz!]!
+  getQuiz(id: Float!): Quiz!
+}
+
+type Mutation {
+  createQuiz(data: CreateQuizInput!): Quiz!
+  updateQuiz(id: Float!, data: UpdateQuizInput!): Quiz!
+  deleteQuiz(id: Float!): Quiz!
+}
+
+input CreateQuizInput {
+  name: String!
+}
+
+input UpdateQuizInput {
+  name: String
 }
