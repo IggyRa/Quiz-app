@@ -11,8 +11,22 @@ datasource db {
 }
 
 model Quiz{
-  id Int @id @default(autoincrement())
-  name String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id          Int @id @default(autoincrement())
+  name        String
+  questions   Question[]
+}
+model Question {
+  id          Int      @id @default(autoincrement())
+  content     String
+  type        String   // SingleCorrect, MultipleCorrect, Sorting, PlainTextAnswer, etc.
+  quiz        Quiz     @relation(fields: [quizId], references: [id])
+  quizId      Int
+  answers     Answer[]
+}
+model Answer {
+  id          Int      @id @default(autoincrement())
+  content     String
+  isCorrect   Boolean
+  question    Question @relation(fields: [questionId], references: [id])
+  questionId  Int
 }
