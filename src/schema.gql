@@ -2,9 +2,17 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Question {
+  id: ID!
+  content: String!
+  type: String!
+  quiz: Quiz!
+}
+
 type Quiz {
   id: Int!
   name: String!
+  questions: [Question!]
 }
 
 type Query {
@@ -15,6 +23,7 @@ type Mutation {
   createQuiz(data: CreateQuizInput!): Quiz!
   updateQuiz(id: Float!, data: UpdateQuizInput!): Quiz!
   deleteQuiz(id: Float!): Quiz!
+  createQuestion(data: CreateQuestionInput!): Question!
 }
 
 input CreateQuizInput {
@@ -23,4 +32,10 @@ input CreateQuizInput {
 
 input UpdateQuizInput {
   name: String
+}
+
+input CreateQuestionInput {
+  content: String!
+  type: String!
+  quizId: Int!
 }
