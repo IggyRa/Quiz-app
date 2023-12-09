@@ -2,11 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Answer {
+  id: ID!
+  content: String!
+  isCorrect: Boolean!
+  question: Question!
+}
+
 type Question {
   id: ID!
   content: String!
   type: String!
   quiz: Quiz!
+  answers: [Answer!]
 }
 
 type Quiz {
@@ -18,6 +26,7 @@ type Quiz {
 type Query {
   getQuiz(id: Float!): Quiz!
   getQuizQuestions(quizId: Float!): [Question!]!
+  getAnswersForQuestion(questionId: Float!): [Answer!]!
 }
 
 type Mutation {
@@ -26,6 +35,7 @@ type Mutation {
   deleteQuiz(id: Float!): Quiz!
   createQuestion(data: CreateQuestionInput!): Question!
   deleteQuestion(id: Float!): Question!
+  createAnswer(data: CreateAnswerInput!): Answer!
 }
 
 input CreateQuizInput {
@@ -40,4 +50,10 @@ input CreateQuestionInput {
   content: String!
   type: String!
   quizId: Int!
+}
+
+input CreateAnswerInput {
+  content: String!
+  isCorrect: Boolean!
+  questionId: Int!
 }

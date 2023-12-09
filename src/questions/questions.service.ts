@@ -31,6 +31,10 @@ export class QuestionsService {
     });
   }
 
+  /*async getAnswersForQuestion(id: number): Promise<Question> {
+    return this.prisma.question.findUnique({ where: { id } });
+  }*/
+  
   async deleteQuestion(questionId: number): Promise<Question> {
     return this.prisma.question.delete({ 
       where: { 

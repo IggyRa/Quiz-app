@@ -8,6 +8,7 @@ import { join } from 'path';
 import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { QuestionsModule } from './questions/questions.module';
+import { AnswersModule } from './answers/answers.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { QuestionsModule } from './questions/questions.module';
     QuizesModule,
     PrismaModule,
     QuestionsModule,
+    AnswersModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

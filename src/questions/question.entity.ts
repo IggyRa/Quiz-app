@@ -1,6 +1,6 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Quiz } from 'src/quizes/quiz.entity';
-//import { Answer } from './answer.entity';
+import { Answer } from 'src/answers/answer.entity';
 
 @ObjectType()
 export class Question {
@@ -16,6 +16,6 @@ export class Question {
   @Field(() => Quiz)
   quiz: Quiz;
 
-  //@Field(() => [Answer], { nullable: true })
-  //answers?: Answer[];
+  @Field(() => [Answer], { nullable: true })
+  answers?: Answer[];
 }
