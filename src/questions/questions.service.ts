@@ -20,4 +20,25 @@ export class QuestionsService {
     return createdQuestion;
   }
 
+  async getQuestionsForQuiz(id: number): Promise<Question[]> {
+    return this.prisma.question.findMany({
+      where: {
+        quizId: id,
+      },
+      include: {
+        quiz: true
+      },
+    });
+  }
+
+  async deleteQuestion(questionId: number): Promise<Question> {
+    return this.prisma.question.delete({ 
+      where: { 
+        id: questionId, 
+      },
+      include: { 
+        quiz: true 
+      },
+    });
+  }
 }

@@ -17,6 +17,7 @@ type Quiz {
 
 type Query {
   getQuiz(id: Float!): Quiz!
+  getQuizQuestions(quizId: Float!): [Question!]!
 }
 
 type Mutation {
@@ -24,6 +25,7 @@ type Mutation {
   updateQuiz(id: Float!, data: UpdateQuizInput!): Quiz!
   deleteQuiz(id: Float!): Quiz!
   createQuestion(data: CreateQuestionInput!): Question!
+  deleteQuestion(id: Float!): Question!
 }
 
 input CreateQuizInput {

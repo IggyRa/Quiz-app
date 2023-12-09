@@ -16,4 +16,7 @@ export class CreateQuestionInput {
 export class UpdateQuestionInput {
   @Field({ nullable: true })
   content?: string;
+
+  @Field({ nullable: true })
+  type?: string; 
 }
