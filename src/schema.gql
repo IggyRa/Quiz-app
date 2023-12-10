@@ -34,6 +34,7 @@ type Mutation {
   updateQuiz(id: Float!, data: UpdateQuizInput!): Quiz!
   deleteQuiz(id: Float!): Quiz!
   createQuestion(data: CreateQuestionInput!): Question!
+  updateQuestion(id: Float!, data: UpdateQuestionInput!): Question!
   deleteQuestion(id: Float!): Question!
   createAnswer(data: CreateAnswerInput!): Answer!
 }
@@ -50,6 +51,11 @@ input CreateQuestionInput {
   content: String!
   type: String!
   quizId: Int!
+}
+
+input UpdateQuestionInput {
+  content: String
+  type: String
 }
 
 input CreateAnswerInput {

@@ -12,11 +12,6 @@ export class QuizResolver {
     return this.quizService.getQuiz(id);
   }
 
-  @Query(() => Quiz)
-  async getQuizQuestions(@Args('quizId') quizId: number) {
-    return this.quizService.getQuestionsForQuiz(quizId);
-  }
-
   @Mutation(() => Quiz)
   async createQuiz(@Args('data') data: CreateQuizInput): Promise<Quiz> {
     return this.quizService.createQuiz(data);

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Question } from './question.entity';
-import { CreateQuestionInput } from './dto/question.dto';
+import { CreateQuestionInput, UpdateQuestionInput } from './dto/question.dto';
 
 @Injectable()
 export class QuestionsService {
@@ -20,21 +20,28 @@ export class QuestionsService {
     return createdQuestion;
   }
 
-  async getQuestionsForQuiz(id: number): Promise<Question[]> {
+  async getQuizQuestions(id: number): Promise<Question[]> {
     return this.prisma.question.findMany({
       where: {
         quizId: id,
       },
       include: {
-        quiz: true
+        quiz: true,
       },
     });
   }
 
-  /*async getAnswersForQuestion(id: number): Promise<Question> {
-    return this.prisma.question.findUnique({ where: { id } });
-  }*/
-  
+  async updateQuestion(id: number, data: UpdateQuestionInput): Promise<Question> {
+    return this.prisma.question.update({ where: 
+      { id },
+      include: { 
+        quiz: true 
+      },
+        data
+    });
+  }
+
+
   async deleteQuestion(questionId: number): Promise<Question> {
     return this.prisma.question.delete({ 
       where: { 

@@ -11,9 +11,6 @@ export class QuizService {
     return this.prisma.quiz.findUnique({ where: { id } });
   }
 
-  async getQuestionsForQuiz(id: number): Promise<Quiz> {
-    return this.prisma.quiz.findUnique({ where: { id } });
-  }
   async createQuiz(data: CreateQuizInput): Promise<Quiz> {
     return this.prisma.quiz.create({ data });
   }
