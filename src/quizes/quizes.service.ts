@@ -22,4 +22,5 @@ export class QuizService {
   async deleteQuiz(id: number): Promise<Quiz> {
     return this.prisma.quiz.delete({ where: { id } });
   }
+
 }

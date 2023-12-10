@@ -13,8 +13,8 @@ export class Question {
   @Field()
   type: string; // SingleCorrect, MultipleCorrect, Sorting, PlainTextAnswer, etc.
 
-  @Field(() => Quiz)
-  quiz: Quiz;
+  @Field(() => Quiz, { nullable: true })
+  quiz?: Quiz;
 
   @Field(() => [Answer], { nullable: true })
   answers?: Answer[];

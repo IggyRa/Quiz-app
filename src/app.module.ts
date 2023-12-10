@@ -9,6 +9,7 @@ import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { QuestionsModule } from './questions/questions.module';
 import { AnswersModule } from './answers/answers.module';
+import { SubmissionsModule } from './submissions/submissions.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AnswersModule } from './answers/answers.module';
     PrismaModule,
     QuestionsModule,
     AnswersModule,
+    SubmissionsModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

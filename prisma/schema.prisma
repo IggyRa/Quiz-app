@@ -19,7 +19,7 @@ model Question {
   id          Int      @id @default(autoincrement())
   content     String
   type        String   // SingleCorrect, MultipleCorrect, Sorting, PlainTextAnswer, etc.
-  quiz        Quiz     @relation(fields: [quizId], references: [id])
+  quiz        Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
   quizId      Int
   answers     Answer[]
 }
@@ -27,6 +27,12 @@ model Answer {
   id          Int      @id @default(autoincrement())
   content     String
   isCorrect   Boolean
-  question    Question @relation(fields: [questionId], references: [id])
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
   questionId  Int
+}
+model Submission {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  questionId  Int
+  answerId    Int
 }

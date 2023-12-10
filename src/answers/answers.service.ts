@@ -10,11 +10,7 @@ export class AnswersService {
     async createAnswer(data: CreateAnswerInput): Promise<Answer> {
         const createdAnswer = await this.prisma.answer.create({
           include: {
-            question: {
-                include: {
-                    quiz: true,
-                },
-            },
+            question:true
         },  
         data: {
             content: data.content,
@@ -32,11 +28,7 @@ export class AnswersService {
             questionId: id,
           },
           include: {
-            question: {
-                include: {
-                    quiz: true,
-                },
-            },
+            question: true,
         }, 
         });
       }

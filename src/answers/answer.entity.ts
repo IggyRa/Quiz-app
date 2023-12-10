@@ -12,6 +12,6 @@ export class Answer {
   @Field()
   isCorrect: boolean;
 
-  @Field(() => Question)
-  question: Question;
+  @Field(() => Question, { nullable: true })
+  question?: Question;
 }

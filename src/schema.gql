@@ -6,14 +6,14 @@ type Answer {
   id: ID!
   content: String!
   isCorrect: Boolean!
-  question: Question!
+  question: Question
 }
 
 type Question {
   id: ID!
   content: String!
   type: String!
-  quiz: Quiz!
+  quiz: Quiz
   answers: [Answer!]
 }
 
@@ -25,6 +25,7 @@ type Quiz {
 
 type Query {
   getQuiz(id: Float!): Quiz!
+  getQuestion(id: Float!): Question!
   getQuizQuestions(quizId: Float!): [Question!]!
   getAnswersForQuestion(questionId: Float!): [Answer!]!
 }
@@ -34,7 +35,7 @@ type Mutation {
   updateQuiz(id: Float!, data: UpdateQuizInput!): Quiz!
   deleteQuiz(id: Float!): Quiz!
   createQuestion(data: CreateQuestionInput!): Question!
-  updateQuestion(id: Float!, data: UpdateQuestionInput!): Question!
+  updateQuestion(data: UpdateQuestionInput!): Question!
   deleteQuestion(id: Float!): Question!
   createAnswer(data: CreateAnswerInput!): Answer!
 }

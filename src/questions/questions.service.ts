@@ -7,6 +7,14 @@ import { CreateQuestionInput, UpdateQuestionInput } from './dto/question.dto';
 export class QuestionsService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async getQuestion(id: number): Promise<Question> {
+    return this.prisma.question.findUnique({     
+    where: { id },
+    include: {
+      answers: true,
+    }, });
+  }
+
   async createQuestion(data: CreateQuestionInput): Promise<Question> {
     const createdQuestion = await this.prisma.question.create({
     include: { quiz: true },   
@@ -20,20 +28,18 @@ export class QuestionsService {
     return createdQuestion;
   }
 
-  async getQuizQuestions(id: number): Promise<Question[]> {
+  async getQuizQuestions(quizId: number): Promise<Question[]> {
     return this.prisma.question.findMany({
-      where: {
-        quizId: id,
-      },
+      where: { quizId },
       include: {
-        quiz: true,
+        answers: true,
       },
     });
   }
 
   async updateQuestion(id: number, data: UpdateQuestionInput): Promise<Question> {
-    return this.prisma.question.update({ where: 
-      { id },
+    return this.prisma.question.update({ 
+      where: { id },
       include: { 
         quiz: true 
       },

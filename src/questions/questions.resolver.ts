@@ -7,7 +7,12 @@ import { CreateQuestionInput, UpdateQuestionInput } from './dto/question.dto';
 export class QuestionsResolver {
     constructor(private readonly questionService: QuestionsService) {}
     
-    @Query(() => [Question])  // Specify the return type as an array of Question
+    @Query(() => Question)
+    async getQuestion(@Args('id') id: number): Promise<Question> {
+      return this.questionService.getQuestion(id);
+    }
+
+    @Query(() => [Question])
     async getQuizQuestions(@Args('quizId') quizId: number): Promise<Question[]> {
       return this.questionService.getQuizQuestions(quizId);
     }
@@ -18,7 +23,7 @@ export class QuestionsResolver {
     }
 
     @Mutation(() => Question)
-    async updateQuestion(@Args('id') id: number, @Args('data') data: UpdateQuestionInput): Promise<Question> {
+    async updateQuestion(id: number, @Args('data') data: UpdateQuestionInput): Promise<Question> {
       return this.questionService.updateQuestion(id, data);
     }
 
