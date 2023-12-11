@@ -1,16 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AnswersResolver } from './answers.resolver';
-import { AnswersService } from './answers.service';
-import { PrismaService } from 'src/prisma/prisma.service';
 
 describe('AnswersResolver', () => {
   let resolver: AnswersResolver;
+  const mockAnswersResolver ={
+    createAnswer: jest.fn(CreateAnswerInput =>{
+      return{
+        id: Date.now(),
+        ...CreateAnswerInput
+      }
+    }),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [AnswersService,PrismaService],
       providers: [AnswersResolver],
-    }).compile();
+    }).overrideProvider(AnswersResolver).useValue(mockAnswersResolver).compile();
 
     resolver = module.get<AnswersResolver>(AnswersResolver);
   });
