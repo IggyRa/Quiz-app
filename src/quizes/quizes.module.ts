@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { QuizService } from './quizes.service';
 import { QuizResolver } from './quizes.resolver';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
   imports: [PrismaModule],
