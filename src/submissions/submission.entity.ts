@@ -1,15 +1,21 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { Answer } from 'src/answers/answer.entity';
-import { Question } from 'src/questions/question.entity';
+import { Answer } from '../answers/answer.entity';
+import { Question } from '../questions/question.entity';
 
 @ObjectType()
 export class Submission {
   @Field(() => ID)
   id: number;
 
-  @Field(() => Question, { nullable: false })
-  question: Question;
+  @Field()
+  userId: number;
 
-  @Field(() => [Answer])
-  selectedAnswers: Answer[];
+  @Field()
+  questionId: number;
+
+  @Field()
+  answerId: number;
+
+  @Field()
+  isCorrect: boolean;
 }
