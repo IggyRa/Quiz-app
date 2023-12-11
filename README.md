@@ -8,13 +8,13 @@ After cloning repository write following commands into terminal:
 2. Set up database (while docker is running)  
    $ docker compose up quiz-db -d
 
-3. Downloading all extensions   
+3. Download all extensions   
    $ npm install
    
 4. Connect prisma with database    
-   $ npx prisma run migrate dev
+   $ npx prisma migrate dev
    
-5. Running the program   
+5. Run the program   
    $ npm run start:dev
  
 6. In order to see resolvers functionality:
@@ -32,7 +32,9 @@ After cloning repository write following commands into terminal:
          content
        }
      }
-   }
+   }  
+7. View added entities in Prisma studio  
+   $ npx prisma studio 
        
-7. Running unit tests  
-   $ npx jest
+8. Run unit tests  
+   $ npx jest 
