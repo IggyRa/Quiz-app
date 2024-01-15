@@ -31,6 +31,11 @@ type Submission {
   isCorrect: Boolean!
 }
 
+type SubmissionResult {
+  submissions: [Submission!]!
+  correctCount: Float!
+}
+
 type Query {
   getQuiz(id: Float!): Quiz!
   getQuestion(id: Float!): Question!
@@ -42,11 +47,12 @@ type Mutation {
   createQuiz(data: CreateQuizInput!): Quiz!
   updateQuiz(id: Float!, data: UpdateQuizInput!): Quiz!
   deleteQuiz(id: Float!): Quiz!
+  createQuizWithQuestions(data: CreateQuizWithQuestionsInput!): Quiz!
   createQuestion(data: CreateQuestionInput!): Question!
   updateQuestion(data: UpdateQuestionInput!): Question!
   deleteQuestion(id: Float!): Question!
   createAnswer(data: CreateAnswerInput!): Answer!
-  createSubmission(data: SubmissionAnswerInput!): Submission!
+  createSubmission(data: CreateSubmissionInput!): SubmissionResult!
 }
 
 input CreateQuizInput {
@@ -55,6 +61,22 @@ input CreateQuizInput {
 
 input UpdateQuizInput {
   name: String
+}
+
+input CreateQuizWithQuestionsInput {
+  name: String!
+  questions: [CreateQuizQuestionInput!]!
+}
+
+input CreateQuizQuestionInput {
+  content: String!
+  type: String!
+  answers: [CreateQuizAnswerInput!]!
+}
+
+input CreateQuizAnswerInput {
+  content: String!
+  isCorrect: Boolean!
 }
 
 input CreateQuestionInput {
@@ -74,8 +96,19 @@ input CreateAnswerInput {
   questionId: Int!
 }
 
-input SubmissionAnswerInput {
+input CreateSubmissionInput {
   userId: Int!
+  quizId: Int!
+  answers: [SubmissionAnswerInput!]!
+}
+
+input SubmissionAnswerInput {
   questionId: Int!
-  answerId: Int!
+  questionType: String!
+  answers: [IndividualAnswerInput!]!
+}
+
+input IndividualAnswerInput {
+  answerIds: [Int!]!
+  textAnswer: String
 }
